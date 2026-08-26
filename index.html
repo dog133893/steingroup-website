@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stein home page</title>
+<meta name="description" content="Welcome to the STEIN home page — you can access multiple resources from here.">
+<meta name="theme-color" content="#12395c">
+<meta property="og:title" content="Stein home page">
+<meta property="og:description" content="Welcome to the STEIN home page — you can access multiple resources from here.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2312395C'/%3E%3Ctext x='16' y='22' font-family='Segoe UI,Helvetica,Arial,sans-serif' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --navy:#12395c;
+  --navy-dk:#0e2d49;
+  --link:#1a5490;
+  --link-dk:#123f6d;
+  --ink:#14181d;
+  --body:#3c434d;
+  --muted:#6d7681;
+  --faint:#9aa2ac;
+  --rule:#e5e8ec;
+  --tint:#f6f8fa;
+  --white:#fff;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--white);color:var(--body);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-dk);text-decoration:underline}
+:focus-visible{outline:2px solid #ffc233;outline-offset:2px;border-radius:2px}
+
+.skip{position:absolute;left:-9999px;background:#fff;color:var(--ink);padding:9px 14px;border:1px solid var(--rule);z-index:20}
+.skip:focus{left:10px;top:10px}
+
+.shell{max-width:1040px;margin:0 auto;padding:0 26px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.masthead{background:var(--navy);color:#fff}
+
+.bar{display:flex;align-items:center;gap:20px;padding:15px 0}
+.wordmark{
+  color:#fff;font-size:15px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;margin-right:auto;
+}
+.wordmark:hover{color:#fff;text-decoration:none;opacity:.85}
+
+.search{
+  width:214px;padding:7px 12px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:5px;color:#fff;font:14px inherit;
+}
+.search::placeholder{color:rgba(255,255,255,.6)}
+.search:focus{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45);outline-offset:0}
+.search::-webkit-search-cancel-button{-webkit-appearance:none}
+
+/* nav row */
+.nav{border-top:1px solid rgba(255,255,255,.14)}
+.nav ul{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-wrap:wrap;gap:0 4px;
+}
+.nav a{
+  display:block;padding:11px 10px;
+  color:rgba(255,255,255,.82);font-size:14px;
+  border-bottom:2px solid transparent;
+}
+.nav a:hover{color:#fff;text-decoration:none;border-bottom-color:rgba(255,255,255,.5)}
+.nav a[aria-current="page"]{color:#fff;border-bottom-color:#ffc233}
+
+/* hero */
+.hero{padding:38px 0 44px}
+.hero h1{
+  margin:0 0 8px;color:#fff;
+  font-size:34px;line-height:1.15;font-weight:600;letter-spacing:-.015em;
+}
+.hero p{margin:0;color:rgba(255,255,255,.74);font-size:16.5px;max-width:52ch}
+
+/* weather widgets — aligned to the same column as the title, not full width */
+.wx{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.wx .tomorrow{width:100%}
+.wx img{max-width:100%;height:auto;opacity:.75}
+
+/* ── content ──────────────────────────────────────────── */
+main{padding:44px 0 8px}
+.col{max-width:720px}
+
+section{margin:0 0 40px}
+section > h2{
+  margin:0 0 2px;color:var(--ink);
+  font-size:19px;font-weight:600;letter-spacing:-.01em;
+}
+section > .sub{margin:0 0 14px;color:var(--muted);font-size:14.5px}
+section > h2 + .list{margin-top:14px}
+
+/* index-style rows: type label | name | note */
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.list li{border-bottom:1px solid var(--rule)}
+.list a{
+  display:grid;
+  grid-template-columns:74px 1fr;
+  gap:0 16px;align-items:baseline;
+  padding:13px 4px;color:inherit;
+}
+.list a:hover{text-decoration:none;background:var(--tint)}
+.kind{
+  font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--faint);padding-top:3px;
+}
+.name{color:var(--link);font-weight:500;font-size:16px}
+.list a:hover .name{text-decoration:underline;color:var(--link-dk)}
+.note{display:block;grid-column:2;color:var(--muted);font-size:13.5px;margin-top:1px}
+
+/* slides embed — 960x569 is Google's published ratio (16:9 slide + control bar) */
+.embed{
+  position:relative;aspect-ratio:960/569;
+  margin:16px 0 10px;
+  background:var(--tint);
+  border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+@supports not (aspect-ratio:16/9){
+  .embed{height:0;padding-bottom:59.27%}
+}
+.cap{margin:0;font-size:13.5px;color:var(--muted)}
+
+.empty{color:var(--muted);font-size:15px;padding:6px 0 30px;margin:0}
+
+/* ── footer ───────────────────────────────────────────── */
+footer{background:var(--tint);border-top:1px solid var(--rule);margin-top:20px}
+.foot{padding:24px 0 40px;font-size:13.5px;color:var(--muted)}
+.foot p{margin:0 0 5px}
+.foot p:last-child{margin:0}
+
+/* ── narrow ───────────────────────────────────────────── */
+@media (max-width:720px){
+  .shell{padding:0 18px}
+  .bar{gap:14px;flex-wrap:wrap;padding:14px 0}
+  .wordmark{margin-right:0}
+  .search{width:100%;order:3}
+  .nav{margin:0 -18px;padding:0 18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .nav ul{flex-wrap:nowrap}
+  .nav a{white-space:nowrap;padding:11px 9px}
+  .hero{padding:28px 0 34px}
+  .hero h1{font-size:27px}
+  .wx{margin-top:22px;gap:12px}
+  main{padding-top:32px}
+  .list a{grid-template-columns:1fr;gap:2px;padding:12px 4px}
+  .kind{padding-top:0}
+  .note{grid-column:1}
+}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell">
+    <div class="bar">
+      <a class="wordmark" href="/">Stein</a>
+      <input id="q" class="search" type="search" placeholder="Search this site" aria-label="Search this site" autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Main">
+    <div class="shell">
+      <ul>
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="https://192.168.12.180:8006">Proxmox Server</a></li>
+        <li><a href="https://192.168.12.143:5006">ActualBudget</a></li>
+        <li><a href="http://moodle.server-iis.stein.local">Moodle</a></li>
+        <li><a href="https://stein1.onecorenetworks.com/home/eagle-scout-material-list">Eagle Scout Material List</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpwMnUqALGrv3ehElaA8Cdw6TpORJP51X0hwayFFtev0qPYQ/viewform">Travel List Form</a></li>
+        <li><a href="https://mail.google.com">Gmail</a></li>
+        <li><a href="https://mail.yahoo.com">Yahoo Mail</a></li>
+        <li><a href="https://myapps.microsoft.com">My Apps</a></li>
+        <li><a href="https://google.com">Google</a></li>
+        <li><a href="https://stein.sherpadesk.com">Submit a Ticket</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="shell">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Stein home page</h1>
+        <p>Welcome to the STEIN home page — you can access multiple resources from here.</p>
+      </div>
+
+      <div class="wx">
+        <div class="tomorrow"
+             data-location-id="128825"
+             data-language="EN"
+             data-unit-system="IMPERIAL"
+             data-skin="dark"
+             data-widget-type="aqiMini"
+             style="padding-bottom:22px;position:relative;">
+          <a href="https://weather.tomorrow.io/" rel="nofollow noopener noreferrer" target="_blank"
+             style="position:absolute;bottom:0;transform:translateX(-50%);left:50%;">
+            <img alt="Powered by Tomorrow.io" src="https://weather-website-client.tomorrow.io/img/powered-by.svg" width="250" height="18">
+          </a>
+        </div>
+
+        <div class="tomorrow"
+             data-location-id="128825"
+             data-language="EN"
+             data-unit-system="IMPERIAL"
+             data-skin="dark"
+             data-widget-type="summary"
+             style="padding-bottom:22px;position:relative;">
+          <a href="https://weather.tomorrow.io/" rel="nofollow noopener noreferrer" target="_blank"
+             style="position:absolute;bottom:0;transform:translateX(-50%);left:50%;">
+            <img alt="Powered by Tomorrow.io" src="https://weather-website-client.tomorrow.io/img/powered-by.svg" width="250" height="18">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="shell">
+    <div class="col">
+
+      <section>
+        <h2>Eagle Scout project</h2>
+        <p class="sub">The project is getting started.</p>
+        <ul class="list">
+          <li>
+            <a href="https://drive.google.com/file/d/1nWoD_lTpmjy_ePaTbVH9mLhDn82ewnsX/view">
+              <span class="kind">PDF</span>
+              <span class="name">Final material list</span>
+              <span class="note">Everything the build needs, priced out</span>
+            </a>
+          </li>
+          <li>
+            <!-- TODO: replace with the real share link for FINAL COSTS.pdf -->
+            <a href="https://drive.google.com/drive/my-drive">
+              <span class="kind">PDF</span>
+              <span class="name">Final costs</span>
+              <span class="note">Google Drive</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://stein1.onecorenetworks.com/home/eagle-scout-material-list">
+              <span class="kind">Page</span>
+              <span class="name">Material list page</span>
+              <span class="note">Notes and running updates</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Saving up for</h2>
+        <p class="sub">Wishlists and what still needs buying.</p>
+        <ul class="list">
+          <li>
+            <a href="https://stein1.onecorenetworks.com/parts-needed-for-pc">
+              <span class="kind">Page</span>
+              <span class="name">Parts needed for the new PC</span>
+              <span class="note">The components still to pick up</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://stein1.onecorenetworks.com/networking-stuff-i-would-like-to-save-up-for">
+              <span class="kind">Page</span>
+              <span class="name">Networking gear</span>
+              <span class="note">Kit to save up for</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Forms</h2>
+        <ul class="list">
+          <li>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhFWR3Rw0qEfdGKnhgqP-kjNdtkkQ8vqIixS2g7wtNEbyB6A/viewform">
+              <span class="kind">Form</span>
+              <span class="name">Kiosk form</span>
+              <span class="note">Google Forms</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpwMnUqALGrv3ehElaA8Cdw6TpORJP51X0hwayFFtev0qPYQ/viewform">
+              <span class="kind">Form</span>
+              <span class="name">Travel list</span>
+              <span class="note">Google Forms</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://classroom.google.com/c/MTY5ODE1MjkzMDkw/a/ODQ3Nzk2MzYzNTMw/details">
+              <span class="kind">Form</span>
+              <span class="name">ABC form</span>
+              <span class="note">Google Classroom</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section data-find="cats slides slideshow presentation odds and ends">
+        <h2>Cats</h2>
+        <p class="sub">Google Slides — use the arrows to move through it.</p>
+        <div class="embed">
+          <iframe
+            src="https://docs.google.com/presentation/d/e/2PACX-1vQ30rzlQJzNyouYsBCsL9zX9qhpzNigILRD8_K9j2Mw82AMdgKH-8nL-amgQ08helksuBAA-j4CSwFc/pubembed?start=false&amp;loop=false&amp;delayms=3000"
+            title="Cats — Google Slides presentation"
+            loading="lazy"
+            allowfullscreen></iframe>
+        </div>
+        <p class="cap">
+          <a href="https://docs.google.com/presentation/d/e/2PACX-1vQ30rzlQJzNyouYsBCsL9zX9qhpzNigILRD8_K9j2Mw82AMdgKH-8nL-amgQ08helksuBAA-j4CSwFc/pub?start=false&amp;loop=false&amp;delayms=3000">Open full screen in Google Slides</a>
+        </p>
+      </section>
+
+      <p class="empty" id="empty" hidden>Nothing here matches that.</p>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot">
+      <p>Proxmox, ActualBudget and Moodle only open from inside the Stein network.</p>
+      <p>© 2026, STEIN. If you have any issues please <a href="https://stein.sherpadesk.com">submit a support ticket</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var rows = [].slice.call(document.querySelectorAll('.list li, .nav li'));
+  var secs = [].slice.call(document.querySelectorAll('main section'));
+  var empty = document.getElementById('empty');
+
+  function run(){
+    var v = q.value.trim().toLowerCase();
+    rows.forEach(function(li){
+      li.style.display = (!v || li.textContent.toLowerCase().indexOf(v) > -1) ? '' : 'none';
+    });
+    var hits = 0;
+    secs.forEach(function(s){
+      var lis = [].slice.call(s.querySelectorAll('li'));
+      var n;
+      if (lis.length){
+        n = lis.filter(function(li){ return li.style.display !== 'none'; }).length;
+      } else {
+        // sections without link rows (the slides embed) match on their own text
+        var hay = ((s.dataset.find || '') + ' ' + s.textContent).toLowerCase();
+        n = (!v || hay.indexOf(v) > -1) ? 1 : 0;
+      }
+      s.style.display = n ? '' : 'none';
+      hits += n;
+    });
+    empty.hidden = hits > 0;
+  }
+
+  q.addEventListener('input', run);
+  q.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){ q.value = ''; run(); }
+  });
+})();
+</script>
+
+<!-- Tomorrow.io widget SDK. Loaded once; it renders every .tomorrow element on the page. -->
+<script>
+(function(d, s, id){
+  if (d.getElementById(id)){
+    if (window.__TOMORROW__) window.__TOMORROW__.renderWidget();
+    return;
+  }
+  var fjs = d.getElementsByTagName(s)[0];
+  var js = d.createElement(s);
+  js.id = id;
+  js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, 'script', 'tomorrow-sdk');
+</script>
+</body>
+</html>
